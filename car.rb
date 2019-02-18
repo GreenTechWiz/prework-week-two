@@ -1,32 +1,36 @@
-class Car
+class Vehicle
+  attr_accessor :color, :honk_horn
 
-  attr_accessor :mileage, :color, :miles
-
-  def initialize(mileage, color)
-    @mileage = mileage
+  def initialize(color, honk_horn)
     @color = color
-  end
-
-  def drive(miles)
-    puts "*Drives #{miles} miles*"
-    miles + mileage
-  end
-  # def mileage
-  #   return 12
-  # end
-
-  # def color
-  #   return "Green, cause it's better then red"
-  # end
-
-
-
-  def honk_horn
-    puts "*Honk!*"
+    @honk_horn = honk_horn
   end
 end
 
-wheels = Car.new(12, "Green, cause it's better then red")
+
+class Car < Vehicle
+  attr_accessor :color, :miles, :mileage
+
+  def initialize(color, mileage)
+    super(color, honk_horn)
+    @mileage = mileage
+  end
+
+
+  def drive(miles)
+    puts "*Drives #{miles} miles*"
+    return @mileage +=  miles
+  end
+  
+  def honk_horn
+    return "*Honk!*"
+  end
+end
+
+
+
+wheels = Car.new("Green, cause it's better then red", 12)
+
 puts wheels.drive(5)
 puts wheels.color
 puts wheels.honk_horn
